@@ -1,12 +1,26 @@
 import { Product } from "../src/products";
 
-interface InventoryItem{
+export interface InventoryItem{
   product : Product;
   quantity: number;
 }
 
 
 
-let inventory: InventoryItem[]=[
-  {  product: new Product(){},price:10.00,quantity:10 },
+export let inventory: InventoryItem[]=[
+  {product: {name: "motor", price: 10.00}, quantity: 10},
+  {product: {name: "sensor", price: 12.50}, quantity: 4},
+  {product: {name: "LED", price: 1.00}, quantity: 20},
 ];
+
+export function calcInventoryValue (inventoryItems: InventoryItem[]):number{
+  let value = 0;
+  for(let items of inventoryItems){
+    value +=(items.product.price * items.quantity);
+  }
+  if (inventoryItems.length ===0){
+    return 0;
+  }
+return value;
+
+}
